@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option csharp_namespace = "Registration";
+
+package registration;
+
+message RegistrationEvent {
+  string investor_id = 1;
+}

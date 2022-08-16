@@ -9,6 +9,8 @@
 	<ItemGroup>
 		<PackageReference Include="AspNetCore.Identity.MongoDbCore" Version="3.1.2" />
 		<PackageReference Include="Calabonga.UnitOfWork" Version="3.0.0" />
+		<PackageReference Include="Google.Protobuf" Version="3.21.5" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
 		<PackageReference Include="OpenIddict.Abstractions" Version="3.1.1" />
 		<PackageReference Include="OpenIddict.MongoDb" Version="3.1.1" />
 		<PackageReference Include="OperationResultCore" Version="3.0.1" />
