@@ -21,8 +21,20 @@ namespace BalanceMicroservice.Web.MongoService
 
         public async Task<List<BalanceViewModel>> GetAsync() =>
             await _balancesCollection.Find(_ => true).ToListAsync();
-        public async Task<BalanceViewModel> GetByIdAsync(Guid id) =>
-            await _balancesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+
+        public async Task<BalanceViewModel> GetByIdAsync(Guid id)
+        {
+            var result = await _balancesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+
+            if (result == null)
+            {
+                await CreateAsync(new BalanceViewModel() { Id = id, BalanceActive = 0, BalanceFrozen = 0 });
+                result = await _balancesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            }
+
+            return result;
+        }
+
         public async Task CreateAsync(BalanceViewModel balance) =>
             await _balancesCollection.InsertOneAsync(balance);
         public async Task UpdateAsync(BalanceViewModel updatedBalance) =>
